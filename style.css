@@ -1,0 +1,323 @@
+/* --- BASIS & TYPOGRAFIE --- */
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --background-light: linear-gradient(135deg, #f0f2f5 0%, #e0e5ec 100%);
+    --background-dark: linear-gradient(135deg, #1f2733 0%, #11141a 100%);
+    --text-light: #2c3e50;
+    --text-dark: #e0e0e0;
+    --card-light-bg: rgba(255, 255, 255, 0.2);
+    --card-dark-bg: rgba(40, 50, 60, 0.4);
+    --glass-border-light: rgba(255, 255, 255, 0.3);
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --button-secondary-light-bg: #e9ecef;
+    --button-secondary-light-text: var(--primary-color);
+    --button-secondary-dark-bg: #2c3e50;
+    --button-secondary-dark-text: #90ee90; /* Hellgrün für Dark Mode Akzent */
+    --button-secondary-light-border: #ced4da;
+    --button-secondary-dark-border: #4a6372;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--background-light);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+/* --- DARK MODE TRANSFORMATION --- */
+body.dark-mode {
+    background: var(--background-dark);
+    color: var(--text-dark);
+}
+body.dark-mode header {
+    background-color: var(--card-dark-bg);
+    border-bottom-color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #ffffff;
+}
+body.dark-mode p {
+    color: #c0c0c0;
+}
+body.dark-mode .wunsch-item.fulfilled {
+    background: rgba(40, 167, 69, 0.1);
+    border-left-color: #28a745;
+}
+
+
+/* --- GLASSMORPHISM CARDS (Schwebender Effekt) --- */
+.card {
+    background: var(--card-light-bg);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border-light); 
+    
+    border-radius: 18px; 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+body.dark-mode .card {
+    background: var(--card-dark-bg);
+    border: 1px solid var(--glass-border-dark);
+}
+
+/* --- HEADER & TITEL --- */
+header {
+    background-color: var(--card-light-bg);
+    backdrop-filter: blur(8px);
+    padding: 40px 0 30px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s;
+}
+
+h1 {
+    font-size: 3.2em;
+    font-weight: 900;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+h3 {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+h3 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+/* --- MAIN & WUNSCH-LISTE --- */
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 30px;
+    flex-grow: 1;
+}
+
+.wunsch-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.wunsch-item {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    padding: 25px;
+}
+.wunsch-item.fulfilled {
+    opacity: 0.7;
+    background: rgba(160, 255, 160, 0.1);
+    border-left: 5px solid #28a745;
+}
+
+
+/* --- VIDEO BEREICH --- */
+.video-container {
+    background: #000;
+    border-radius: 15px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    margin: 30px auto 20px;
+    max-width: 800px;
+    border: 3px solid #333;
+}
+.video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* --- BUTTONS ALLGEMEIN --- */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.95em;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.button i {
+    margin-right: 8px;
+}
+
+.button.primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+.button.primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+.button.secondary {
+    background-color: var(--button-secondary-light-bg);
+    color: var(--button-secondary-light-text);
+    border: 1px solid var(--button-secondary-light-border);
+}
+.button.secondary:hover {
+    background-color: #dee2e6;
+    transform: translateY(-2px);
+}
+body.dark-mode .button.secondary {
+    background-color: var(--button-secondary-dark-bg);
+    color: var(--button-secondary-dark-text);
+    border-color: var(--button-secondary-dark-border);
+}
+body.dark-mode .button.secondary:hover {
+    background-color: #384f60;
+}
+
+/* --- HEADER BUTTONS (NEUES DESIGN) --- */
+.header-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Größerer Abstand */
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+.header-buttons .action-button {
+    padding: 14px 28px; /* Größere Buttons */
+    font-size: 1.05em; /* Etwas größerer Text */
+    border-radius: 12px; /* Weniger rund, moderner */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Einheitlicherer Schatten */
+    border: none;
+}
+/* Spezielle Styles für Dark Mode Toggle im Header */
+body.dark-mode #darkModeToggle.action-button.primary {
+    background-color: #4a6372; /* Dunklerer Primär-Button im Dark Mode */
+    color: #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+body.dark-mode #darkModeToggle.action-button.primary:hover {
+    background-color: #5a7385;
+}
+
+
+/* --- WUNSCH-ITEM AKTIONEN (Buttons innerhalb der Karten) --- */
+.item-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 35px 0;
+    color: #95a5a6;
+    font-size: 0.9em;
+    margin-top: 40px;
+    background-color: #f0f2f5;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.03);
+    transition: background-color 0.4s, box-shadow 0.4s;
+}
+body.dark-mode footer {
+    background-color: #1f2733;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+footer a {
+    color: #7f8c8d;
+    text-decoration: none;
+}
+footer a:hover {
+    color: var(--primary-color);
+}
+
+
+/* -------------------------------------- */
+/* --- SCROLL-ANIMATIONEN (REVEAL) --- */
+/* -------------------------------------- */
+
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+
+.fade-in-up {
+    transform: translateY(30px);
+}
+
+.slide-in-left {
+    transform: translateX(-50px);
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.wunsch-item:nth-child(1).is-visible { transition-delay: 0s; }
+.wunsch-item:nth-child(2).is-visible { transition-delay: 0.1s; }
+.wunsch-item:nth-child(3).is-visible { transition-delay: 0.2s; }
+
+
+/* --- RESPONSIVITÄT & SCROLLBAR --- */
+
+@media (max-width: 768px) {
+    main { padding: 0 15px; }
+    .wunsch-list { grid-template-columns: 1fr; gap: 20px; }
+    .header-buttons, .item-actions { flex-direction: column; align-items: stretch; }
+    .wunsch-item { min-height: auto; }
+}
+
+/* Minimalistischer Scrollbar (nur Webkit-Browser) */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+body.dark-mode ::-webkit-scrollbar-track { background: #222; }
+body.dark-mode ::-webkit-scrollbar-thumb { background: #444; }

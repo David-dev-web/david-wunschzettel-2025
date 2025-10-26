@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Davids Hyper-Moderne Wunschliste 2025</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="script.js" defer></script> 
+</head>
+<body>
+    <header class="animate-on-scroll fade-in-up">
+        <h1>Mein Weihnachts-Upgrade 2025</h1>
+        <p>Mit Code und Leidenschaft erstellt. Ich hoffe, es gefällt dir!</p>
+        
+        <div class="header-buttons">
+            <button id="darkModeToggle" class="action-button primary">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            <button class="action-button secondary" onclick="resetWishes()">
+                <i class="fas fa-arrow-rotate-left"></i> Liste zurücksetzen
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="animation-area" class="card animate-on-scroll fade-in-up">
+            <h2>🎥 Die Animation (Manim Code)</h2>
+            <div class="video-container">
+                <video controls autoplay loop muted>
+                    <source src="media/videos/WeihnachtsWunschzettel.mp4" type="video/mp4">
+                    Dein Browser unterstützt das Video-Tag nicht.
+                </video>
+            </div>
+            <p class="section-description">Hier siehst du eine animierte Zusammenfassung meiner Wunschliste, erstellt mit Manim in Python.</p>
+        </section>
+
+        <section id="wunsch-details">
+            <h2>🛍️ Alle Wünsche im Detail</h2>
+            
+            <div class="wunsch-list">
+                
+                <div class="wunsch-item card animate-on-scroll slide-in-left" data-wish-id="1">
+                    <h3><i class="fas fa-mobile-screen"></i> 1. Samsung Galaxy S24</h3>
+                    <p>Der notwendige Sprung vom A22 5G. Ein S24 bietet die Rechenleistung und Kameraqualität, die ich für meine Entwickler-Projekte und zum Testen brauche.</p>
+                    <div class="item-actions">
+                        <a href="https://www.samsung.com/de/smartphones/galaxy-s24/" target="_blank" class="button primary"><i class="fas fa-link"></i> Zum Produkt-Link</a>
+                        <button class="button secondary mark-fulfilled" data-wish-id="1"><i class="fas fa-check"></i> Erfüllt</button>
+                    </div>
+                </div>
+
+                
+                <div class="wunsch-item card animate-on-scroll fade-in-up" data-wish-id="2">
+                    <h3><i class="fas fa-guitar"></i> 2. FL Studio Producer Edition</h3>
+                    <p>Die professionelle Software, um meine eigenen Beats und Sound-Designs zu erstellen – perfekt für zukünftige Projekte oder einfach nur zum Abschalten.</p>
+                    <div class="item-actions">
+                        <a href="https://www.amazon.de/Image-Line-FL-Studio-20-Producer/dp/B07C895FTM/ref=sr_1_3?crid=1A75TTOIVR7WZ&dib=eyJ2IjoiMSJ9.Y0im9b0eSrw5A2p_Ti3rLbIAprkh1XOveZGmB16Sb6EGDMiMn8tQvV8NhjwqKRIKGJ9EK9ZfBMiryA6ux7k_oGPLsFIbdqvzgg2D219uyLy6BttelREHfmhhUXVJH-8fOscVKZJU6yG46GZIIgVXaHPtGqVlx4eiT6Aq4wnSdLXN1RDweFUpTUryLcbVZ5tdMHF3JfquzGH2Ya6rN6AxjF2OGtDJ71YMrT8CTSl_0vM.KBxj30zpvONLRhufaYi8Ngun_h3HpMNvb2GzBCLPGBc&dib_tag=se&keywords=fl%2Bstudio%2Bproducer%2Bedition&qid=1761494373&sprefix=fl%2Bstudio%2Bprod%2Caps%2C83&sr=8-3&th=1" target="_blank" class="button primary"><i class="fas fa-link"></i> Zur Kaufseite</a>
+                        <button class="button secondary mark-fulfilled" data-wish-id="2"><i class="fas fa-check"></i> Erfüllt</button>
+                    </div>
+                </div>
+
+                
+                <div class="wunsch-item card animate-on-scroll slide-in-left" data-wish-id="3">
+                    <h3><i class="fas fa-headphones"></i> 3. Pioneer DDJ-FLX4 DJ-Mischpult</h3>
+                    <p>Das ideale Starter-Mischpult. So kann ich die Musik, die ich mit FL Studio produziere, auch live mischen und die Grundlagen des DJing lernen.</p>
+                    <div class="item-actions">
+                        <a href="https://www.pioneerdj.com/de-de/product/controller/ddj-flx4/" target="_blank" class="button primary"><i class="fas fa-link"></i> Zum Pioneer Produkt</a>
+                        <button class="button secondary mark-fulfilled" data-wish-id="3"><i class="fas fa-check"></i> Erfüllt</button>
+                    </div>
+                </div>
+            </div> 
+        </section>
+    </main>
+
+    <footer class="animate-on-scroll fade-in-up">
+        <p>Mit Manim, HTML, CSS & JS von David programmiert. • <a href="https://david-dev-web.github.io/David-dev-web/" target="_blank">Mein Portfolio</a></p>
+    </footer>
+</body>
+</html>
