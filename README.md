@@ -1,6 +1,6 @@
 # 🎁 david-wunschzettel-2025
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/SITE_ID_AKTUALISIEREN/deploy-status)](https://davids-wunschzettel-2025.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/835b5c67-e956-4cef-9d2a-24194611675f/deploy-status)](https://davids-wunschzettel-2025.netlify.app/)
 
 ## ✨ Live-Version
 
