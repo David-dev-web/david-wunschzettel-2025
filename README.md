@@ -6,7 +6,7 @@
 
 Sieh dir den Hyper-Modernen Wunschzettel 2025 direkt an:
 
-➡️ **[Zum Wunschzettel (Netlify Live-Link)](https://davids-wunschzettel-2025.netlify.app/)**
+➡️ **[Zum Wunschzettel (Netlify Live-Link)](https://netlify.davidklimke3.workers.dev/)**
 
 ---
 
