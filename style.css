@@ -155,6 +155,43 @@ main {
     border-left: 5px solid #28a745;
 }
 
+/* --- NEU: COUNTDOWN Sektion Styling --- */
+#countdown-section {
+    text-align: center;
+    padding: 35px 30px; 
+    margin-top: 30px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#countdown-section h2 {
+    color: var(--primary-color); 
+    font-size: 1.8em; 
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+#countdown-section h2::after {
+    display: none; 
+}
+
+#countdownTimer {
+    font-size: 3.5em; 
+    font-weight: 900;
+    color: var(--primary-color); 
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.2); 
+    display: block;
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+/* Dark Mode Anpassung Countdown */
+body.dark-mode #countdownTimer {
+    color: var(--button-secondary-dark-text); /* Hellgrün / Akzent */
+    text-shadow: 0 0 15px rgba(144, 238, 144, 0.3);
+}
+
 
 /* --- VIDEO BEREICH --- */
 .video-container {
@@ -223,20 +260,20 @@ body.dark-mode .button.secondary:hover {
 .header-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Größerer Abstand */
+    gap: 20px; 
     margin-top: 25px;
     flex-wrap: wrap;
 }
 .header-buttons .action-button {
-    padding: 14px 28px; /* Größere Buttons */
-    font-size: 1.05em; /* Etwas größerer Text */
-    border-radius: 12px; /* Weniger rund, moderner */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Einheitlicherer Schatten */
+    padding: 14px 28px; 
+    font-size: 1.05em; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     border: none;
 }
 /* Spezielle Styles für Dark Mode Toggle im Header */
 body.dark-mode #darkModeToggle.action-button.primary {
-    background-color: #4a6372; /* Dunklerer Primär-Button im Dark Mode */
+    background-color: #4a6372; 
     color: #e0e0e0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -312,6 +349,7 @@ footer a:hover {
     .wunsch-list { grid-template-columns: 1fr; gap: 20px; }
     .header-buttons, .item-actions { flex-direction: column; align-items: stretch; }
     .wunsch-item { min-height: auto; }
+    #countdownTimer { font-size: 2.5em; }
 }
 
 /* Minimalistischer Scrollbar (nur Webkit-Browser) */

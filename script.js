@@ -1,3 +1,52 @@
+// ==========================================================
+// NEU: WEIHNACHTS-COUNTDOWN FUNKTION
+// ==========================================================
+
+function updateCountdown() {
+    // Ziel: Heiligabend, 24. Dezember dieses Jahres (00:00 Uhr)
+    const now = new Date();
+    
+    // Wir nehmen das aktuelle Jahr, um den 24. Dezember festzulegen.
+    let year = now.getFullYear();
+    
+    // Überprüfen, ob Weihnachten dieses Jahr schon vorbei ist (nach dem 24. Dez)
+    if (now.getMonth() === 11 && now.getDate() > 24) {
+        year = year + 1; // Zähle bis nächstes Jahr
+    }
+
+    // Heiligabend am 24. Dezember um 00:00:00 Uhr
+    const christmas = new Date(year, 11, 24, 0, 0, 0).getTime();
+    
+    const distance = christmas - now.getTime();
+
+    // Berechnung für Tage, Stunden, Minuten und Sekunden
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const countdownElement = document.getElementById('countdownTimer');
+    
+    if (countdownElement) {
+        if (distance < 0) {
+            // Falls der Zähler abgelaufen ist
+            countdownElement.innerHTML = "🎄 FROHE WEIHNACHTEN! 🎅";
+        } else {
+            // Zeigt den Countdown an
+            countdownElement.innerHTML = `${days} TAGE, ${hours} STD., ${minutes} MIN., ${seconds} SEK.`;
+        }
+    }
+}
+
+// Countdown sofort starten und jede Sekunde aktualisieren
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+
+// ==========================================================
+// BESTEHENDER CODE: WUNSCHLISTE & DARK MODE ETC.
+// ==========================================================
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- WUNSCHZETTEL LOGIK: Erfüllt/Zurücksetzen ---
     const fulfilledButtons = document.querySelectorAll('.mark-fulfilled');
@@ -29,7 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fulfilledButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-            const wishId = event.target.dataset.wishId;
+            // Findet den Button selbst, oder das Elternelement mit data-wish-id, falls der Click auf dem Icon war
+            const targetButton = event.target.closest('.mark-fulfilled'); 
+            const wishId = targetButton.dataset.wishId;
             const wishItem = document.querySelector(`.wunsch-item[data-wish-id="${wishId}"]`);
             if (wishItem) {
                 wishItem.classList.toggle('fulfilled');
@@ -43,9 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (confirm("Möchtest du wirklich alle Wünsche auf 'Unerfüllt' zurücksetzen?")) {
             wishItems.forEach(item => {
                 item.classList.remove('fulfilled');
-                // Optional: Hier könnten wir auch die 'is-visible' Klasse entfernen, 
-                // um die Animation beim Zurücksetzen zu wiederholen,
-                // aber für "Zurücksetzen" wollen wir sie normalerweise sichtbar lassen.
             });
             saveWishStatus();
         }
