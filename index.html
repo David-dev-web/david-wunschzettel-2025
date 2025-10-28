@@ -27,42 +27,32 @@
     </header>
 
     <section id="countdown-section" class="card animate-on-scroll fade-in-up">
-        <h2>🎄 Countdown bis Heiligabend:</h2>
-        <p id="countdownTimer">Laden...</p>
+        <h2>🎄 Countdown bis Heiligabend</h2>
+        <div id="countdown-timer">-- Tage, -- Stunden</div>
+    </section>
+
+    <section id="price-summary" class="card animate-on-scroll fade-in-up">
+        <h2>Aktueller Gesamtpreis der Wunschliste</h2>
+        <span class="price-display" id="total-price">--.-- €</span>
+        <p class="price-info">
+            Gesamtpreis basiert auf den Preisen von **Amazon, Samsung & Thomann** (Stand: <strong id="last-update">--.--.----</strong>)
+        </p>
     </section>
 
     <main>
-        
-        <section id="price-summary" class="card animate-on-scroll fade-in-up">
-            <h2>💰 Gesamtwert offener Wünsche:</h2>
-            <p id="totalPrice" class="price-display">--.-- €</p>
-        </section>
-        
-        <section id="animation-area" class="card animate-on-scroll fade-in-up">
-            <h2>🎥 Die Animation (Manim Code)</h2>
-            <div class="video-container">
-                <video controls autoplay loop muted>
-                    <source src="media/videos/WeihnachtsWunschzettel.mp4" type="video/mp4">
-                    Dein Browser unterstützt das Video-Tag nicht.
-                </video>
-            </div>
-            <p class="section-description">Hier siehst du eine animierte Zusammenfassung meiner Wunschliste, erstellt mit Manim in Python.</p>
+        <section id="filter-section" class="animate-on-scroll fade-in-up">
+            <button class="filter-btn active" data-filter="all">Alle Wünsche</button>
+            <button class="filter-btn" data-filter="hardware">Hardware</button>
+            <button class="filter-btn" data-filter="software">Software</button>
+            <button class="filter-btn" data-filter="musik">Musikproduktion</button>
         </section>
 
-        <section id="wunsch-details">
-            <h2>🛍️ Alle Wünsche im Detail</h2>
-            
-            <div class="filter-buttons">
-                <button class="button secondary filter-btn active" data-filter="all" onclick="filterByCategory('all')">Alle Wünsche</button>
-                <button class="button secondary filter-btn" data-filter="hardware" onclick="filterByCategory('hardware')">Hardware</button>
-                <button class="button secondary filter-btn" data-filter="software" onclick="filterByCategory('software')">Software</button>
-                <button class="button secondary filter-btn" data-filter="musik" onclick="filterByCategory('musik')">Musikproduktion</button>
-            </div>
-            
-            <div class="wunsch-list" id="wishlistContainer">
+
+        <section id="wishlist">
+            <div class="wunsch-list">
                 
                 <div class="wunsch-item card animate-on-scroll slide-in-left" data-wish-id="1" data-category="hardware">
-                    <h3><i class="fas fa-mobile-screen"></i> 1. Samsung Galaxy S24</h3>
+                    <h3><i class="fas fa-mobile-alt"></i> 1. Samsung Galaxy S24</h3>
                     <p class="price-info">Aktueller Preis: <strong id="price-1">--.-- €</strong> (Stand: <span id="date-1">--.--.----</span>)</p>
                     <p>Der notwendige Sprung vom A22 5G. Ein S24 bietet die Rechenleistung und Kameraqualität, die ich für meine Entwickler-Projekte und zum Testen brauche.</p>
                     <div class="item-actions">
@@ -72,12 +62,12 @@
                 </div>
 
                 
-                <div class="wunsch-item card animate-on-scroll fade-in-up" data-wish-id="2" data-category="software">
-                    <h3><i class="fas fa-guitar"></i> 2. FL Studio Producer Edition</h3>
+                <div class="wunsch-item card animate-on-scroll slide-in-left" data-wish-id="2" data-category="software">
+                    <h3><i class="fas fa-music"></i> 2. FL Studio Producer Edition</h3>
                     <p class="price-info">Aktueller Preis: <strong id="price-2">--.-- €</strong> (Stand: <span id="date-2">--.--.----</span>)</p>
                     <p>Die professionelle Software, um meine eigenen Beats und Sound-Designs zu erstellen – perfekt für zukünftige Projekte oder einfach nur zum Abschalten.</p>
                     <div class="item-actions">
-                        <a href="https://www.amazon.de/Image-Line-FL-Studio-20-Producer/dp/B07C895FTM/ref=sr_1_3?crid=1A75TTOIVR7WZ&dib=eyJ2IjoiMSJ9.Y0im9b0eSrw5A2p_Ti3rLbIAprkh1XOveZGmB16Sb6EGDMiMn8tQvV8NhjwqKRIKGJ9EK9ZfBMiryA6ux7k_oGPLsFIbdqvzgg2D219uyLy6BttelREHfmhhUXVJH-8fOscVKZJU6yG46GZIIgVXaHPtGqVlx4eiT6Aq4wnSdLXN1RDweFUpTUryLcbVZ5tdMHF3JfquzGH2Ya6rN6AxjF2OGtDJ71YMrT8CTSl_0vM.KBxj30zpvONLRhufaYi8Ngun_h3HpMNvb2GzBCLPGBc&dib_tag=se&keywords=fl%2Bstudio%2Bproducer%2Bedition&qid=1761494373&sprefix=fl%2Bstudio%2Bprod%2Caps%2C83&sr=8-3&th=1" target="_blank" class="button primary" id="wish-link-2"><i class="fas fa-link"></i> Zur Kaufseite</a>
+                        <a href="https://www.amazon.de/Image-Line-FL-Studio-20-Producer/dp/B07C895FTM" target="_blank" class="button primary" id="wish-link-2"><i class="fas fa-link"></i> Zur Kaufseite</a>
                         <button class="button secondary mark-fulfilled" data-wish-id="2"><i class="fas fa-check"></i> Erfüllt</button>
                     </div>
                 </div>
@@ -97,7 +87,7 @@
     </main>
 
     <footer class="animate-on-scroll fade-in-up">
-        <p>Mit Manim, HTML, CSS & JS von David programmiert. • <a href="https://david-dev-web.github.io/David-dev-web/" target="_blank">Mein Portfolio</a></p>
+        <p>Mit Manim, HTML, CSS & JS erstellt.</p>
     </footer>
 </body>
 </html>

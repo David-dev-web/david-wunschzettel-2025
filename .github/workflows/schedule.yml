@@ -1,8 +1,7 @@
 name: Price Scraper Bot
 
-# FÜGE DIESEN BLOCK HIER HINZU (Ganz oben)
 permissions:
-  contents: write
+  contents: write # FÜR DEN PUSH ERFORDERLICH (Fixt den 403-Fehler)
 
 # Startet den Workflow jeden Tag um 03:00 UTC
 on:
@@ -41,4 +40,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: '🤖 [Bot] Daily price update via Scraper'
-          file_pattern: prices.json # <-- Korrigierter Parameter
+          file_pattern: prices.json # KORRIGIERT: Muss 'file_pattern' sein!
