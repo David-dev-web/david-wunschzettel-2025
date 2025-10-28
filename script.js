@@ -1,5 +1,6 @@
 // ==========================================================
-// NEU: WEIHNACHTS-COUNTDOWN FUNKTION
+// WEIHNACHTS-COUNTDOWN FUNKTION
+// (Bleibt unverändert)
 // ==========================================================
 
 function updateCountdown() {
@@ -44,7 +45,120 @@ setInterval(updateCountdown, 1000);
 
 
 // ==========================================================
-// BESTEHENDER CODE: WUNSCHLISTE & DARK MODE ETC.
+// NEU: AGENT FUNKTION - DATEN FETCHEN & BERECHNEN
+// ==========================================================
+
+async function fetchAndCalculatePrices() {
+    let total = 0;
+    const totalPriceElement = document.getElementById('totalPrice');
+    
+    try {
+        // 1. Daten von der JSON-Datei abrufen (simuliert den Agenten-Output)
+        const response = await fetch('./prices.json');
+        if (!response.ok) {
+            throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+        }
+        const priceData = await response.json();
+
+        // 2. Wunsch-Status laden (welche Wünsche sind erfüllt?)
+        const storedStatus = JSON.parse(localStorage.getItem('wishlistStatus') || '{}');
+
+        // 3. Durch alle Preise aus dem JSON iterieren
+        priceData.wishes.forEach(wish => {
+            const wishItem = document.querySelector(`.wunsch-item[data-wish-id="${wish.id}"]`);
+            
+            // Preis- und Datumselemente aktualisieren
+            const priceElement = document.getElementById(`price-${wish.id}`);
+            const dateElement = document.getElementById(`date-${wish.id}`);
+
+            if (priceElement && dateElement) {
+                // Preis formatieren (z.B. 599.99 zu 599,99 €)
+                const formattedPrice = wish.price.toLocaleString('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR',
+                    minimumFractionDigits: 2,
+                });
+
+                priceElement.textContent = formattedPrice;
+                dateElement.textContent = priceData.last_updated; // Datum vom Agenten
+            }
+
+            // 4. Gesamtpreis nur für unerfüllte Wünsche berechnen
+            const isFulfilled = storedStatus[wish.id];
+            if (!isFulfilled) {
+                total += wish.price;
+            }
+            
+            // Wichtig: data-price Attribut im HTML temporär aktualisieren, 
+            // damit die "Erfüllt"-Funktion den Preis noch kennt, falls nötig
+            if(wishItem) {
+                 wishItem.dataset.price = wish.price;
+            }
+        });
+
+        // 5. Gesamtpreis aktualisieren
+        const formattedTotal = total.toLocaleString('de-DE', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 2,
+        });
+
+        if (totalPriceElement) {
+            totalPriceElement.textContent = formattedTotal;
+        }
+
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Preisdaten:', error);
+        if (totalPriceElement) {
+            totalPriceElement.textContent = "Fehler beim Laden";
+        }
+    }
+}
+
+
+// ==========================================================
+// KATEGORIE FILTER FUNKTION
+// (Bleibt unverändert)
+// ==========================================================
+
+/**
+ * Filtert die Wishlist-Elemente basierend auf der ausgewählten Kategorie.
+ * @param {string} category - Die Kategorie nach der gefiltert werden soll (z.B. 'hardware', 'all').
+ */
+function filterByCategory(category) {
+    // Alle Artikel abrufen
+    const items = document.getElementById('wishlistContainer').getElementsByClassName('wunsch-item');
+    
+    // Alle Filter-Buttons abrufen, um den aktiven Button zu stylen
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // 1. Buttons stylen
+    filterButtons.forEach(button => {
+        if (button.dataset.filter === category) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
+
+    // 2. Elemente filtern
+    for (let i = 0; i < items.length; i++) {
+        const itemCategory = items[i].dataset.category;
+
+        if (category === 'all' || itemCategory === category) {
+            // Zeige das Element
+            items[i].style.display = ""; 
+        } else {
+            // Verstecke das Element
+            items[i].style.display = "none";
+        }
+    }
+}
+
+
+// ==========================================================
+// WUNSCHLISTE & DARK MODE LOGIK & MOUSEOVER
+// (Nur Anpassungen für fetchAndCalculatePrices)
 // ==========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,26 +192,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fulfilledButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-            // Findet den Button selbst, oder das Elternelement mit data-wish-id, falls der Click auf dem Icon war
             const targetButton = event.target.closest('.mark-fulfilled'); 
             const wishId = targetButton.dataset.wishId;
             const wishItem = document.querySelector(`.wunsch-item[data-wish-id="${wishId}"]`);
             if (wishItem) {
                 wishItem.classList.toggle('fulfilled');
                 saveWishStatus();
+                // Beim Statuswechsel die Preise neu abrufen und berechnen
+                fetchAndCalculatePrices(); 
             }
         });
     });
 
-    // Globale Funktion für "Wunschliste zurücksetzen" Button
     window.resetWishes = () => {
         if (confirm("Möchtest du wirklich alle Wünsche auf 'Unerfüllt' zurücksetzen?")) {
             wishItems.forEach(item => {
                 item.classList.remove('fulfilled');
             });
             saveWishStatus();
+            // Beim Reset die Preise neu abrufen und berechnen
+            fetchAndCalculatePrices(); 
         }
     };
+
+    // --- MOUSEOVER HIGHLIGHT LOGIK ---
+    wishItems.forEach(item => {
+        const id = item.dataset.wishId;
+        const linkButton = document.getElementById(`wish-link-${id}`);
+
+        if (linkButton) {
+            item.addEventListener('mouseenter', () => {
+                linkButton.classList.add('highlight-link');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                linkButton.classList.remove('highlight-link');
+            });
+        }
+    });
+
 
     // --- DARK MODE LOGIK ---
     const darkModeToggle = document.getElementById('darkModeToggle');
@@ -167,4 +300,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Status beim Laden der Seite laden
     loadWishStatus();
+    
+    // NEU: Beim Laden die Preise via Agent-Daten abrufen und berechnen
+    fetchAndCalculatePrices();
+    
+    // Beim Laden den Standardfilter ('all') aktivieren
+    filterByCategory('all');
 });

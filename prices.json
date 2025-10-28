@@ -1,0 +1,20 @@
+{
+  "last_updated": "28.10.2025",
+  "wishes": [
+    {
+      "id": 1,
+      "name": "Samsung Galaxy S24",
+      "price": 599.99
+    },
+    {
+      "id": 2,
+      "name": "FL Studio Producer Edition",
+      "price": 230.56
+    },
+    {
+      "id": 3,
+      "name": "Pioneer DDJ-FLX4 DJ-Mischpult",
+      "price": 409.99
+    }
+  ]
+}
