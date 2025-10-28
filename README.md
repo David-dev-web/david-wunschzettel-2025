@@ -2,6 +2,7 @@
 
 https://github.com/user-attachments/assets/14c9b984-11c1-445b-99f3-22a8f5f9c210
 
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/835b5c67-e956-4cef-9d2a-24194611675f/deploy-status)](https://davids-wunschzettel-2025.netlify.app/)
 
 ## ✨ Live-Version
