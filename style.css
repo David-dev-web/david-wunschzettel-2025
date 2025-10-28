@@ -50,7 +50,6 @@ body.dark-mode p {
     color: #c0c0c0;
 }
 body.dark-mode .wunsch-item.fulfilled {
-    opacity: 0.7;
     background: rgba(40, 167, 69, 0.1);
     border-left-color: #28a745;
 }
@@ -156,7 +155,7 @@ main {
     border-left: 5px solid #28a745;
 }
 
-/* --- COUNTDOWN Sektion Styling --- */
+/* --- NEU: COUNTDOWN Sektion Styling --- */
 #countdown-section {
     text-align: center;
     padding: 35px 30px; 
@@ -360,138 +359,3 @@ footer a:hover {
 ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
 body.dark-mode ::-webkit-scrollbar-track { background: #222; }
 body.dark-mode ::-webkit-scrollbar-thumb { background: #444; }
-
-
-/* -------------------------------------- */
-/* --- KATEGORIE FILTER STYLING --- */
-/* -------------------------------------- */
-
-.filter-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0 40px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 10px 20px;
-    font-size: 0.9em;
-    border: 1px solid var(--button-secondary-light-border);
-    transition: all 0.3s ease;
-}
-
-.filter-btn:hover {
-    /* Ein leichter Hover-Effekt */
-    border-color: var(--primary-dark);
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-.filter-btn.active {
-    /* Mache den aktiven Button zum Primär-Button-Stil */
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-dark);
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-    transform: translateY(-2px);
-}
-body.dark-mode .filter-btn.active {
-    background-color: #90ee90; /* Hellgrün Akzent */
-    color: var(--text-light); /* Dunkle Schrift auf hellem Akzent */
-    border-color: #28a745;
-    box-shadow: 0 4px 10px rgba(144, 238, 144, 0.4);
-}
-body.dark-mode .filter-btn:hover {
-    border-color: #90ee90; 
-    background-color: var(--button-secondary-dark-bg);
-}
-
-
-/* -------------------------------------- */
-/* --- WUNSCH-HIGHLIGHT BEIM MOUSEOVER --- */
-/* -------------------------------------- */
-
-.button.primary.highlight-link {
-    /* Ein stärkerer, glänzenderer Effekt */
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8), 0 0 30px rgba(0, 123, 255, 0.4);
-    transform: scale(1.05); /* Leicht vergrößern */
-    transition: all 0.2s ease-out;
-}
-
-body.dark-mode .button.primary.highlight-link {
-    /* Leuchtet grün im Dark Mode, passend zum Akzent */
-    background-color: #90ee90;
-    color: var(--text-light); 
-    box-shadow: 0 0 20px rgba(144, 238, 144, 0.8), 0 0 30px rgba(144, 238, 144, 0.4);
-}
-
-/* -------------------------------------- */
-/* --- PREIS SUMMEN SEKTION --- */
-/* -------------------------------------- */
-#price-summary {
-    text-align: center;
-    padding: 30px 30px; 
-    max-width: 500px;
-    margin: 40px auto; 
-    border-radius: 18px;
-    border: 2px solid var(--primary-color); /* Umrandung als Highlight */
-}
-
-#price-summary h2 {
-    color: var(--text-light);
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-bottom: 10px;
-    padding-bottom: 0;
-}
-#price-summary h2::after {
-    display: none;
-}
-body.dark-mode #price-summary h2 {
-    color: var(--text-dark);
-}
-
-.price-display {
-    font-size: 3.5em; 
-    font-weight: 900;
-    color: #28a745; /* Grün für Geld */
-    text-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
-    display: block;
-    transition: all 0.4s;
-}
-
-body.dark-mode #price-summary {
-    border: 2px solid #90ee90;
-}
-body.dark-mode .price-display {
-    color: #90ee90; /* Hellgrün für Dark Mode */
-    text-shadow: 0 0 15px rgba(144, 238, 144, 0.4);
-}
-
-/* -------------------------------------- */
-/* --- SMART PRICE INFOS (AGENT) --- */
-/* -------------------------------------- */
-.price-info {
-    font-size: 0.9em;
-    color: #6c757d; /* Grauer Text */
-    margin-top: -5px; /* Etwas näher an den Titel */
-    margin-bottom: 15px; 
-    font-style: italic;
-    padding-left: 20px; /* Einrücken */
-    border-left: 3px solid #ced4da; /* Dezente Linie */
-}
-
-.price-info strong {
-    color: #28a745; /* Preis in grün (wie Gesamtpreis) */
-    font-weight: 700;
-    transition: color 0.4s;
-}
-
-body.dark-mode .price-info {
-    color: #a8a8a8;
-    border-left: 3px solid #4a6372;
-}
-body.dark-mode .price-info strong {
-    color: #90ee90;
-}
