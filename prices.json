@@ -4,17 +4,17 @@
     {
       "id": 1,
       "name": "Samsung Galaxy S24",
-      "price": 599.99
+      "price": 0.0
     },
     {
       "id": 2,
       "name": "FL Studio Producer Edition",
-      "price": 230.56
+      "price": 0.0
     },
     {
       "id": 3,
       "name": "Pioneer DDJ-FLX4 DJ-Mischpult",
-      "price": 409.99
+      "price": 0.0
     }
   ]
 }
