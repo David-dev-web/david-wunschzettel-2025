@@ -1,5 +1,9 @@
 name: Price Scraper Bot
 
+# FÜGE DIESEN BLOCK HIER HINZU (Ganz oben)
+permissions:
+  contents: write
+
 # Startet den Workflow jeden Tag um 03:00 UTC
 on:
   schedule:
@@ -16,7 +20,7 @@ jobs:
         # Holt den aktuellen Code (inkl. scraper.py und prices.json)
         uses: actions/checkout@v4
         with:
-          # Braucht vollen Token, um den Commit ausführen zu dürfen
+          # Token ist dank des neuen 'permissions' Blocks nun korrekt konfiguriert
           token: ${{ secrets.GITHUB_TOKEN }} 
           
       - name: 2. Setup Python
@@ -37,4 +41,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: '🤖 [Bot] Daily price update via Scraper'
-          files: prices.json
+          file_pattern: prices.json # <-- Korrigierter Parameter
